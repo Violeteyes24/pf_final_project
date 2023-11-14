@@ -25,29 +25,29 @@ public class create_db {
             System.out.println("Using database 'dmid'...");
 
             String signUpTableSQL = "CREATE TABLE IF NOT EXISTS sign_up("
-            + "name VARCHAR(50)NOT NULL, "
-            + "age INT(11) NOT NULL, "
-            + "sex ENUM('male', 'female', 'others') NOT NULL, "
-            + "location VARCHAR(100) NOT NULL, "
-            + "email VARCHAR(50) NOT NULL, "
-            + "password VARCHAR(50) NOT NULL, "
-            + "PRIMARY KEY (email))";
-    stmnt.executeUpdate(signUpTableSQL);
-    System.out.println("'sign_up' table created successfully...");
+                + "name VARCHAR(50)NOT NULL, "
+                + "age INT(11) NOT NULL, "
+                + "sex ENUM('male', 'female', 'others') NOT NULL, "
+                + "location VARCHAR(100) NOT NULL, "
+                + "email VARCHAR(50) NOT NULL, "
+                + "password VARCHAR(50) NOT NULL, "
+                + "PRIMARY KEY (email))";
+            stmnt.executeUpdate(signUpTableSQL);
+            System.out.println("'sign_up' table created successfully...");
 
-    // Create 'interests' table
-    String interestsTableSQL = "CREATE TABLE IF NOT EXISTS interests ("
-            + "interest_1 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
-            + "interest_2 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
-            + "interest_3 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
-            + "email VARCHAR(50) NOT NULL "
-            + "FOREIGN KEY (email) REFERENCES sign_up(email))";
+            // Create 'interests' table
+            String interestsTableSQL = "CREATE TABLE IF NOT EXISTS interests ("
+                + "interest_1 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
+                + "interest_2 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
+                + "interest_3 ENUM('anime', 'sports', 'music', 'games', 'poetry') NOT NULL, "
+                + "email VARCHAR(50) NOT NULL, "
+                + "CONSTRAINT fk_email FOREIGN KEY (email) REFERENCES sign_up(email) ON DELETE CASCADE ON UPDATE CASCADE)";
 
-    stmnt.executeUpdate(interestsTableSQL);
-    System.out.println("'interests' table created successfully...");
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
+            stmnt.executeUpdate(interestsTableSQL);
+            System.out.println("'interests' table created successfully...");
+                } catch(SQLException e){
+                    e.printStackTrace();
+                }
 
         
 
