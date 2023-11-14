@@ -30,7 +30,7 @@ public class create_db {
                 + "sex ENUM('male', 'female', 'others') NOT NULL, "
                 + "location VARCHAR(100) NOT NULL, "
                 + "email VARCHAR(50) NOT NULL, "
-                + "password VARCHAR(50) NOT NULL, "
+                + "passwordField VARCHAR(50) NOT NULL, "
                 + "PRIMARY KEY (email))";
             stmnt.executeUpdate(signUpTableSQL);
             System.out.println("'sign_up' table created successfully...");
