@@ -106,10 +106,14 @@ public class sign_in_form extends JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             // Establish a connection
-            try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
+            try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement stmnt = conn.createStatement();)
                 // Create a prepared statement
+                String useDBSQL = "USE dmid";
+                stmnt.executeUpdate(useDBSQL);
+
                 String sql = "INSERT INTO sign_up (email, passwordField, sex, location, name, age) VALUES (?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                     // Set values for the prepared statement
                     preparedStatement.setString(1, email.getText());
                     preparedStatement.setString(2, new String(passwordField.getPassword()));
