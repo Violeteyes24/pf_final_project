@@ -12,12 +12,12 @@ enum Sex {
 }
 
 public class sign_in_form extends JFrame {
-    private JTextField usernameField;
-    private JPasswordField passwordField;
-    private JComboBox<Sex> sexComboBox;
-    private JTextField locationField;
-    private JTextField nameField;
-    private JTextField ageField;
+    protected JTextField usernameField;
+    protected JPasswordField passwordField;
+    protected JComboBox<Sex> sexComboBox;
+    protected JTextField locationField;
+    protected JTextField nameField;
+    protected JTextField ageField;
 
     public SignInForm() {
         // Set up the frame
