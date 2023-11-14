@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*;
@@ -8,18 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 enum Sex {
-    MALE, FEMALE, OTHERS
+    male, female, others
 }
 
 public class sign_in_form extends JFrame {
-    protected JTextField usernameField;
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306";
+    static final String USER = "root";
+    static final String PASS = "";
+    
+    protected JTextField email;
     protected JPasswordField passwordField;
-    protected JComboBox<Sex> sexComboBox;
+    protected JComboBox<Sex> sex;
     protected JTextField locationField;
     protected JTextField nameField;
     protected JTextField ageField;
 
-    public SignInForm() {
+    public sign_in_form() {
         // Set up the frame
         setTitle("Sign In Form");
         setSize(400, 300);
@@ -27,16 +33,16 @@ public class sign_in_form extends JFrame {
         setLocationRelativeTo(null);
 
         // Create components
-        JLabel usernameLabel = new JLabel("Username:");
+        JLabel emailLabel = new JLabel("Email:");
         JLabel passwordLabel = new JLabel("Password:");
         JLabel sexLabel = new JLabel("Sex:");
         JLabel locationLabel = new JLabel("Location:");
         JLabel nameLabel = new JLabel("Name:");
         JLabel ageLabel = new JLabel("Age:");
 
-        usernameField = new JTextField(20);
+        email = new JTextField(20);
         passwordField = new JPasswordField(20);
-        sexComboBox = new JComboBox<>(Sex.values());
+        sex = new JComboBox<>(Sex.values());
         locationField = new JTextField(20);
         nameField = new JTextField(20);
         ageField = new JTextField(20);
@@ -45,18 +51,18 @@ public class sign_in_form extends JFrame {
 
         // Set up layout
         setLayout(new GridLayout(7, 2));
-        add(usernameLabel);
-        add(usernameField);
-        add(passwordLabel);
-        add(passwordField);
-        add(sexLabel);
-        add(sexComboBox);
-        add(locationLabel);
-        add(locationField);
         add(nameLabel);
         add(nameField);
         add(ageLabel);
         add(ageField);
+        add(sexLabel);
+        add(sex);
+        add(locationLabel);
+        add(locationField);
+        add(emailLabel);
+        add(email);
+        add(passwordLabel);
+        add(passwordField);
         add(new JLabel()); // Placeholder
         add(signInButton);
 
@@ -64,7 +70,13 @@ public class sign_in_form extends JFrame {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle sign-in logic here (e.g., validate inputs, store in a database, etc.)
+                JFrame email_validator;
+                email_validator = new JFrame();
+                final String email_var = (String)email.getText();
+                    if (!email_var.equals(email_var) && email_var.equals("@")){
+                    JOptionPane.showMessageDialog(email_validator,"Please enter a valid email");
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   }                // Handle sign-in logic here (e.g., validate inputs, store in a database, etc.)
                 // For this example, we will just display the entered information in the console
                 displayUserInfo();
             }
@@ -72,83 +84,61 @@ public class sign_in_form extends JFrame {
     }
 
     private void displayUserInfo() {
-        String username = usernameField.getText();
+        String email_display = email.getText();
         char[] password = passwordField.getPassword();
-        Sex sex = (Sex) sexComboBox.getSelectedItem();
+        Sex sexobj = (Sex) sex.getSelectedItem();
         String location = locationField.getText();
         String name = nameField.getText();
         String age = ageField.getText();
 
-        System.out.println("Username: " + username);
+        System.out.println("Email: " + email_display);
         System.out.println("Password: " + new String(password));
-        System.out.println("Sex: " + sex);
+        System.out.println("Sex: " + sexobj);
         System.out.println("Location: " + location);
         System.out.println("Name: " + name);
         System.out.println("Age: " + age);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new SignInForm().setVisible(true);
+    
+    private void insertUserInfo() {
+        try {
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            // Establish a connection
+            try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
+                // Create a prepared statement
+                String sql = "INSERT INTO sign_up (email, passwordField, sex, location, name, age) VALUES (?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    // Set values for the prepared statement
+                    preparedStatement.setString(1, email.getText());
+                    preparedStatement.setString(2, new String(passwordField.getPassword()));
+                    preparedStatement.setString(3, sex.getSelectedItem().toString());
+                    preparedStatement.setString(4, locationField.getText());
+                    preparedStatement.setString(5, nameField.getText());
+                    preparedStatement.setString(6, ageField.getText());
+                    
+                    // Execute the statement
+                    preparedStatement.executeUpdate();
+                    
+                    JOptionPane.showMessageDialog(this, "User information inserted successfully!");
+                }
             }
-        });
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error inserting user information.");
+        }
     }
+
+public static void main(String[] args) {
+    SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            new sign_in_form().setVisible(true);
+        }
+    });
+    sign_in_form obj = new sign_in_form();
+    obj.insertUserInfo();
 }
-
-// public class SignInForm extends JFrame {
-//     private JTextField usernameField;
-//     private JPasswordField passwordField;
-//     private JComboBox<Sex> sexComboBox;
-//     private JTextField locationField;
-//     private JTextField nameField;
-//     private JTextField ageField;
-
-//     // JDBC database URL, username, and password
-//     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/exampledb";
-//     private static final String DATABASE_USER = "your_username";
-//     private static final String DATABASE_PASSWORD = "your_password";
-
-//     public SignInForm() {
-//         // ... (previous code remains the same)
-
-//         // Add action listener to the sign-in button
-//         signInButton.addActionListener(new ActionListener() {
-//             @Override
-//             public void actionPerformed(ActionEvent e) {
-//                 // Handle sign-in logic here (e.g., validate inputs, store in a database, etc.)
-//                 insertUserInfo();
-//             }
-//         });
-//     }
-
-//     private void insertUserInfo() {
-//         try {
-//             // Load the JDBC driver
-//             Class.forName("com.mysql.cj.jdbc.Driver");
-
-//             // Establish a connection
-//             try (Connection connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD)) {
-//                 // Create a prepared statement
-//                 String sql = "INSERT INTO users (username, password, sex, location, name, age) VALUES (?, ?, ?, ?, ?, ?)";
-//                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                     // Set values for the prepared statement
-//                     preparedStatement.setString(1, usernameField.getText());
-//                     preparedStatement.setString(2, new String(passwordField.getPassword()));
-//                     preparedStatement.setString(3, sexComboBox.getSelectedItem().toString());
-//                     preparedStatement.setString(4, locationField.getText());
-//                     preparedStatement.setString(5, nameField.getText());
-//                     preparedStatement.setString(6, ageField.getText());
-
-//                     // Execute the statement
-//                     preparedStatement.executeUpdate();
-
-//                     JOptionPane.showMessageDialog(this, "User information inserted successfully!");
-//                 }
-//             }
-//         } catch (ClassNotFoundException | SQLException ex) {
-//             ex.printStackTrace();
-//             JOptionPane.showMessageDialog(this, "Error inserting user information.");
-//         }
+}
 
