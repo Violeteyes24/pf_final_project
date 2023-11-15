@@ -51,6 +51,7 @@ public class sign_in_form extends JFrame {
 
         // Set up layout
         setLayout(new GridLayout(7, 2));
+        setBackground(Color.pink);
         add(nameLabel);
         add(nameField);
         add(ageLabel);
