@@ -66,6 +66,22 @@ public class sign_in_form extends JFrame {
         add(new JLabel()); // Placeholder
         add(signInButton);
 
+        private void displayUserInfo() {
+            String email_display = email.getText();
+            char[] password = passwordField.getPassword();
+            Sex sexobj = (Sex) sex.getSelectedItem();
+            String location = locationField.getText();
+            String name = nameField.getText();
+            String age = ageField.getText();
+    
+            System.out.println("Email: " + email_display);
+            System.out.println("Password: " + new String(password));
+            System.out.println("Sex: " + sexobj);
+            System.out.println("Location: " + location);
+            System.out.println("Name: " + name);
+            System.out.println("Age: " + age);
+        }
+        
         // Add action listener to the sign-in button
         signInButton.addActionListener(new ActionListener() {
             @Override
@@ -75,29 +91,12 @@ public class sign_in_form extends JFrame {
                 final String email_var = (String)email.getText();
                     if (!email_var.equals(email_var) && email_var.equals("@")){
                     JOptionPane.showMessageDialog(email_validator,"Please enter a valid email");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   }                // Handle sign-in logic here (e.g., validate inputs, store in a database, etc.)
-                // For this example, we will just display the entered information in the console
+                    // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
                 displayUserInfo();
             }
         });
-    }
 
-    private void displayUserInfo() {
-        String email_display = email.getText();
-        char[] password = passwordField.getPassword();
-        Sex sexobj = (Sex) sex.getSelectedItem();
-        String location = locationField.getText();
-        String name = nameField.getText();
-        String age = ageField.getText();
-
-        System.out.println("Email: " + email_display);
-        System.out.println("Password: " + new String(password));
-        System.out.println("Sex: " + sexobj);
-        System.out.println("Location: " + location);
-        System.out.println("Name: " + name);
-        System.out.println("Age: " + age);
-    }
 
     
     private void insertUserInfo() {
@@ -107,20 +106,20 @@ public class sign_in_form extends JFrame {
             
             // Establish a connection
             try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmnt = conn.createStatement();)
+            Statement stmnt = conn.createStatement();){
                 // Create a prepared statement
                 String useDBSQL = "USE dmid";
                 stmnt.executeUpdate(useDBSQL);
 
-                String sql = "INSERT INTO sign_up (email, passwordField, sex, location, name, age) VALUES (?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO sign_up (name, age, sex, location, email, passwordField) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
                     // Set values for the prepared statement
-                    preparedStatement.setString(1, email.getText());
-                    preparedStatement.setString(2, new String(passwordField.getPassword()));
+                    preparedStatement.setString(1, nameField.getText());
+                    preparedStatement.setInt(2, Integer.parseInt(ageField.getText())); // age is int
                     preparedStatement.setString(3, sex.getSelectedItem().toString());
                     preparedStatement.setString(4, locationField.getText());
-                    preparedStatement.setString(5, nameField.getText());
-                    preparedStatement.setString(6, ageField.getText());
+                    preparedStatement.setString(5, email.getText());
+                    preparedStatement.setString(6, new String(passwordField.getPassword()));
                     
                     // Execute the statement
                     preparedStatement.executeUpdate();
@@ -133,6 +132,7 @@ public class sign_in_form extends JFrame {
             JOptionPane.showMessageDialog(this, "Error inserting user information.");
         }
     }
+}
 
 public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
@@ -141,8 +141,6 @@ public static void main(String[] args) {
             new sign_in_form().setVisible(true);
         }
     });
-    sign_in_form obj = new sign_in_form();
-    obj.insertUserInfo();
-}
+    }
 }
 
