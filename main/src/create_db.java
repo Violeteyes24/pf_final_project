@@ -55,5 +55,12 @@ public class create_db {
                         new sign_in_form().setVisible(true);
                     }
                 });
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new log_in().setVisible(true);
+                    }
+                });
     }
 }

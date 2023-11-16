@@ -89,10 +89,4 @@ public class log_in extends JFrame {
             }
         });
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new log_in().setVisible(true);
-        });
-    }
 }
