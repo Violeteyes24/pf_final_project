@@ -18,7 +18,7 @@ public class log_in extends JFrame {
     protected JTextField email;
     protected JPasswordField passwordField;
 
-    public log_in() {
+    public log_in(String dbUrl) {
         // Set up the frame
         setTitle("Login Form");
         setSize(400, 150);
@@ -48,8 +48,12 @@ public class log_in extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            
+            DatingProfile dateobj = new DatingProfile(DB_URL);
                 if (checkLogin()) {
                     JOptionPane.showMessageDialog(log_in.this, "Login successful!");
+                    dateobj.setVisible(true);
+                    
                 } else {
                     JOptionPane.showMessageDialog(log_in.this, "Invalid email or password.");
                 }

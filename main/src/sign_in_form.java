@@ -25,6 +25,16 @@ public class sign_in_form extends JFrame {
     protected JTextField nameField;
     protected JTextField ageField;
 
+    // idk if this boolean will work
+    // private boolean executed = false;
+
+    // public void execute() {
+    //     executed = true;
+    // }
+
+    // public boolean isExecuted() {
+    //     return executed;
+    // }
     public sign_in_form() {
         // Set up the frame
         setTitle("Sign In Form");
@@ -73,17 +83,20 @@ public class sign_in_form extends JFrame {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame email_validator;
-                email_validator = new JFrame();
-                final String email_var = (String)email.getText();
-                if (!email_var.equals(email_var) && email_var.equals("@")){
-                    JOptionPane.showMessageDialog(email_validator,"Please enter a valid email");
-                    // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                }
+                log_in loginobj = new log_in(DB_URL);
+
                 displayUserInfo();
                 insertUserInfo();
-                // caller of 2 functions after pressing sign in button
+                
+                setVisible(false); // Close the signup window
+                dispose();  // Release system resources
+
+                // Open the login window
+                loginobj.setVisible(true);
+                
             }
+        });
+    }
             private void displayUserInfo() {
                 String email_display = email.getText();
                 char[] password = passwordField.getPassword();
@@ -133,11 +146,4 @@ public class sign_in_form extends JFrame {
                     JOptionPane.showMessageDialog(sign_in_form.this, "Error inserting user information.");
                 }
         }
-        });
     }
-}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7af3c0bc84dee8f409e68f06e2bf387d2afa2acf

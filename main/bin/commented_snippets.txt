@@ -138,3 +138,34 @@ public class DatingProfile extends JFrame {
         ));
     }
 }
+============================================
+
+
+
+// JFrame email_validator;
+//                 email_validator = new JFrame();
+//                 final String email_var = (String)email.getText();
+//                 if (!email_var.equals(email_var) && email_var.equals("@")){
+//                     JOptionPane.showMessageDialog(email_validator,"Please enter a valid email");
+//                     // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                 }
+
+
+===============================================
+
+// Check login credentials
+                isLoginSuccessful = true; // Replace with your actual login check logic
+
+                if (isLoginSuccessful) {
+                    JOptionPane.showMessageDialog(sign_in_form.this, "Account created!");
+                    loginobj.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(sign_in_form.this, "Account not created");
+                }
+
+
+public static boolean loginSuccessful = false;
+
+    public static boolean isLoginSuccessful() {
+        return loginSuccessful;
+    }
