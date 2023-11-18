@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*;
@@ -124,6 +125,14 @@ public class homepage extends JFrame {
     
     private String getUserEmail() {
         // Return the user's email; replace this with your actual implementation
+        String retrieveUserSQL = "SELECT name, age, location FROM sign_up WHERE email = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             PreparedStatement preparedStatement = conn.prepareStatement(retrieveUserSQL)) {
+
+            preparedStatement.setString(1, email);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
         return "user@example.com";
     }
 
