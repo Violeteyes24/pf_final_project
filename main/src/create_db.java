@@ -48,14 +48,12 @@ public class create_db {
                 } catch(SQLException e){
                     e.printStackTrace();
                 }
-                // logical error might start in this line
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         sign_in_form signInForm = new sign_in_form();
                         signInForm.setVisible(true);
                 
-                        // Launch log_in without checking isExecuted()
                     }
                 });                
     }

@@ -93,11 +93,10 @@ public class DatingProfile extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // Assume the user is already signed up and has an email
-            String userEmail = "rj@udtohan";
 
-            // Uncomment the line below if you want to insert user information first
-            // insertUserInfo(userEmail);
+            log_in get_email = new log_in(DB_URL);
+      
+            String userEmail = log_in.email;
 
             new DatingProfile(userEmail);
         });
