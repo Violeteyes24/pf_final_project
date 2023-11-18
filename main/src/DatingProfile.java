@@ -98,14 +98,14 @@ public class DatingProfile extends JFrame {
                     homepageButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            log_in test_gologin = new log_in("jdbc:mysql://localhost:3306/dmid");
+                            homepage homepage_instance = new homepage();
                             
                             setVisible(false); // Close the signup window
                             dispose();  // Release system resources
             
                             // Open the login window
                             System.out.println("I am on log in after pressing hopageButton, just a test  tho");
-                            test_gologin.setVisible(true);
+                            homepage_instance.show_h();
                             
                         }
                     });

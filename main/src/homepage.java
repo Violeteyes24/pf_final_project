@@ -44,12 +44,6 @@ public class homepage extends JFrame {
         deleteButton.setPreferredSize(buttonSize);
         logoutButton.setPreferredSize(buttonSize);
 
-        // Set background color for buttons
-        homeStartButton.setBackground(Color.PINK);
-        updateButton.setBackground(Color.PINK);
-        deleteButton.setBackground(Color.PINK);
-        logoutButton.setBackground(Color.PINK);
-
         // Add spaces between buttons
         int space = 10;
         Insets buttonInsets = new Insets(0, space, 0, space);
@@ -76,10 +70,7 @@ public class homepage extends JFrame {
         getContentPane().setBackground(Color.PINK);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            homepage h = new homepage();
-            h.setVisible(true);
-        });
+    public void show_h(){
+        setVisible(true);
     }
 }
