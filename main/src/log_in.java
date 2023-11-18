@@ -35,7 +35,7 @@
         return logged_in_email;
     }
 
-        public log_in(String dbUrl) {
+        public log_in(String DB_URL) {
 
             // Set up the frame
             setTitle("Login Form");
@@ -54,7 +54,7 @@
 
             // Set up layout
             setLayout(new GridLayout(3, 2));
-            setBackground(Color.pink);
+            getContentPane().setBackground(Color.PINK);
             add(emailLabel);
             add(email);
             add(passwordLabel);

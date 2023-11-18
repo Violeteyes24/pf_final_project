@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class DatingProfile extends JFrame {
 
@@ -24,6 +27,7 @@ public class DatingProfile extends JFrame {
             preparedStatement.setString(1, email);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");
                     int age = resultSet.getInt("age");
@@ -32,6 +36,7 @@ public class DatingProfile extends JFrame {
                     JPanel profilePanel = new JPanel();
                     profilePanel.setLayout(new BoxLayout(profilePanel, BoxLayout.Y_AXIS));
                     profilePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                    getContentPane().setBackground(Color.PINK);
 
                     JLabel nameLabel = new JLabel("Name: " + name);
                     JLabel ageLabel = new JLabel("Age: " + age);
@@ -75,6 +80,36 @@ public class DatingProfile extends JFrame {
 
                     // Make the frame visible
                     setVisible(true);
+
+                    startMatchingButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            Match matchWindow = new Match();
+                            
+                            setVisible(false); // Close the signup window
+                            dispose();  // Release system resources
+            
+                            // Open the login window
+                            matchWindow.setVisible(true);
+                            
+                        }
+                    });
+
+                    homepageButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            log_in test_gologin = new log_in("jdbc:mysql://localhost:3306/dmid");
+                            
+                            setVisible(false); // Close the signup window
+                            dispose();  // Release system resources
+            
+                            // Open the login window
+                            test_gologin.setVisible(true);
+                            
+                        }
+                    });
+
+                    
                 } 
                 
                 // else {
@@ -91,7 +126,7 @@ public class DatingProfile extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            log_in get_email = new log_in(DB_URL);
+            // log_in get_email = new log_in(DB_URL);
             String userEmail = log_in.getLogged_in_email(); // Use the getter method
 
             new DatingProfile(userEmail);

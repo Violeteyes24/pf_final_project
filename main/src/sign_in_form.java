@@ -113,6 +113,7 @@ public class sign_in_form extends JFrame {
                 loginobj.setVisible(true);  
             }
         });
+
     }
             private void displayUserInfo() {
                 String email_display = email.getText();
