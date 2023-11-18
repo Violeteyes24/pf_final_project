@@ -1,7 +1,19 @@
-import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class homepage extends JFrame {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/dmid";
+    static final String USER = "root";
+    static final String PASS = "";
 
     public homepage() {
         setTitle("Home Page");
@@ -68,9 +80,56 @@ public class homepage extends JFrame {
         add(buttonPanel, gbcButtonPanel); // Add the button panel instead of individual buttons
 
         getContentPane().setBackground(Color.PINK);
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Assuming you have a method to get the user's email in your DatingProfile class
+                String userEmail = getUserEmail(); // Implement this method to get the email
+                System.out.print(userEmail);
+                delete del_user = new delete();
+    
+                JFrame delframe = new JFrame();
+                delframe.setTitle("Deleting User");
+                delframe.setSize(300, 300);
+                delframe.setLocation(400, 400);
+    
+                JLabel delLabel = new JLabel("Are you sure you want to delete this account?");
+                JButton delButton = new JButton("Delete");
+    
+                delframe.setLayout(new FlowLayout());
+                delframe.add(delLabel);
+                delframe.add(delButton);
+    
+                delframe.setVisible(true);
+    
+                delButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JOptionPane.showMessageDialog(delframe, "Account Deleted");
+                        del_user.deleteUser(userEmail);
+                        delframe.dispose(); // Close the confirmation frame
+    
+                        // Use the email to create the DatingProfile instance
+                        DatingProfile datingProfile = new DatingProfile(userEmail);
+                        //datingProfile.setVisible(true);
+                        // You may also close or hide the homepage frame if needed
+                    }
+                });
+            }
+        });
+    
+        // Implement this method to get the user's email from your DatingProfile class
+    }
+    
+    private String getUserEmail() {
+        // Return the user's email; replace this with your actual implementation
+        return "user@example.com";
     }
 
     public void show_h(){
         setVisible(true);
     }
+
+    
 }

@@ -104,15 +104,14 @@ public class DatingProfile extends JFrame {
                             dispose();  // Release system resources
             
                             // Open the login window
-                            System.out.println("I am on log in after pressing hopageButton, just a test  tho");
+                            System.out.println("I am here on homepage");
                             homepage_instance.show_h();
                             
                         }
                     });
 
                     
-                } 
-                
+                }       
                 // else {
                 //     System.out.println("DEBUG: User not found in the database."); 
                 //     JOptionPane.showMessageDialog(this, "User not found in the database.");
