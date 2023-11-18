@@ -110,7 +110,8 @@ public class sign_in_form extends JFrame {
                 dispose();  // Release system resources
 
                 // Open the login window
-                loginobj.setVisible(true);  
+                loginobj.setVisible(true);
+                System.out.println("I am on log_in page");  
             }
         });
 

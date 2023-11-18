@@ -10,6 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Match extends JFrame {
+
+    static final String DB_URL = "jdbc:mysql://localhost:3306/dmid";
+    static final String USER = "root";
+    static final String PASS = "";
+    
     private static final Map<String, Set<String>> USER_INTERESTS = new HashMap<>();
     private static final String[] IMAGE_PATHS = {
             "images/Alice.jpg",
@@ -59,7 +64,7 @@ public class Match extends JFrame {
     private String currentMatchedUser;
     
     public Match() {
-        // System.out.println("Im in");
+        System.out.println("Im in Match page");
         frame = new JFrame("Match Found!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 450);
@@ -109,8 +114,7 @@ public class Match extends JFrame {
         
         currentMatchedUser = name;
         chatButton.setEnabled(true); 
-        
-        frame.setVisible(true);
+
     }
     
     private void startChat() {

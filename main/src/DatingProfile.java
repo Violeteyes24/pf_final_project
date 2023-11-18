@@ -85,13 +85,13 @@ public class DatingProfile extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             Match matchWindow = new Match();
+                            // matchWindow.displayRandomMatch(); // Display the match details
                             
-                            setVisible(false); // Close the signup window
+                            setVisible(false); // Close the current window
                             dispose();  // Release system resources
-            
-                            // Open the login window
-                            matchWindow.setVisible(true);
                             
+                            // Open the Match window
+                            matchWindow.showApp();
                         }
                     });
 
@@ -104,6 +104,7 @@ public class DatingProfile extends JFrame {
                             dispose();  // Release system resources
             
                             // Open the login window
+                            System.out.println("I am on log in after pressing hopageButton, just a test  tho");
                             test_gologin.setVisible(true);
                             
                         }
@@ -122,14 +123,5 @@ public class DatingProfile extends JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error retrieving user information.");
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            // log_in get_email = new log_in(DB_URL);
-            String userEmail = log_in.getLogged_in_email(); // Use the getter method
-
-            new DatingProfile(userEmail);
-        });
     }
 }

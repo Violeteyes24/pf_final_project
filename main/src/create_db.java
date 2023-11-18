@@ -51,10 +51,18 @@ public class create_db {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
+                        System.out.println("I am on sign in form");
                         sign_in_form signInForm = new sign_in_form();
                         signInForm.setVisible(true);
                 
                     }
-                });                
+                });
+                
+                SwingUtilities.invokeLater(() -> {
+                    // log_in get_email = new log_in(DB_URL);
+                    System.out.println("I am on  Dating Profile");
+                    String userEmail = log_in.getLogged_in_email(); // Use the getter method
+                    new DatingProfile(userEmail);
+                });
     }
 }
