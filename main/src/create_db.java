@@ -3,8 +3,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*; // for gui, usually Jlabel, Jtexfield, access to its built in methods
-import java.awt.event.*; // Action Listener
-import java.awt.*; // font, maint font and color
+// import java.awt.event.*; // Action Listener
+// import java.awt.*; // font, maint font and color
 
 public class create_db {
     static final String DB_URL = "jdbc:mysql://localhost:3306/dmid";
