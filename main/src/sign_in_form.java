@@ -87,6 +87,11 @@ public class sign_in_form extends JFrame {
         signInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String emailText = email.getText();
+                if (!EmailValidator.isValidEmail(emailText)) {
+                    JOptionPane.showMessageDialog(sign_in_form.this, "Invalid email address!");
+                    return;
+                }
                 log_in loginobj = new log_in(DB_URL);
 
                 displayUserInfo();
@@ -117,7 +122,7 @@ public class sign_in_form extends JFrame {
 
     }
             private void displayUserInfo() {
-                String email_display = email.getText();
+                String email_display = email.getText(); 
                 char[] password = passwordField.getPassword();
                 Sex sexobj = (Sex) sex.getSelectedItem();
                 String location = locationField.getText();
