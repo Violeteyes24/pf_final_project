@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatingProfile extends JFrame {
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/dmid";
     static final String USER = "root";
     static final String PASS = "";
 
@@ -21,11 +20,6 @@ public class DatingProfile extends JFrame {
         String retrieveUserSQL = "SELECT name, age, location FROM sign_up WHERE email = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement preparedStatement = conn.prepareStatement(retrieveUserSQL)) {
-            Statement stmnt = conn.createStatement();
-
-            String useDBSQL = "USE dmid";
-            stmnt.executeUpdate(useDBSQL);
-            System.out.println("Using database 'dmid'...");
 
             preparedStatement.setString(1, email);
 
@@ -81,9 +75,13 @@ public class DatingProfile extends JFrame {
 
                     // Make the frame visible
                     setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "User not found in the database.");
-                }
+                } 
+                
+                // else {
+                //     System.out.println("DEBUG: User not found in the database."); 
+                //     JOptionPane.showMessageDialog(this, "User not found in the database.");
+                //     return;
+                // } 
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,19 +91,10 @@ public class DatingProfile extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-
             log_in get_email = new log_in(DB_URL);
-      
-            String userEmail = log_in.email;
+            String userEmail = log_in.getLogged_in_email(); // Use the getter method
 
             new DatingProfile(userEmail);
         });
-    }
-
-    private static void insertUserInfo(String email) {
-        // Insert user information into the database based on the email
-        // This method is similar to the insertUserInfo method in your sign_in_form class
-        // You can reuse the code for inserting user information here
-        // ...
     }
 }

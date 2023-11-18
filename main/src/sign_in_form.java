@@ -58,9 +58,12 @@ public class sign_in_form extends JFrame {
         ageField = new JTextField(20);
 
         JButton signInButton = new JButton("Sign In");
+        JButton loginButton = new JButton("Login"); 
+
+        loginButton.setLayout(new GridLayout(7,1));
 
         // Set up layout
-        setLayout(new GridLayout(7, 2));
+        setLayout(new GridLayout(8, 2, 10, 1));
         getContentPane().setBackground(Color.PINK);
         // setBackground(Color.pink);
         add(nameLabel);
@@ -77,6 +80,7 @@ public class sign_in_form extends JFrame {
         add(passwordField);
         add(new JLabel()); // Placeholder
         add(signInButton);
+        add(loginButton);
 
         
         // Add action listener to the sign-in button
@@ -94,6 +98,19 @@ public class sign_in_form extends JFrame {
                 // Open the login window
                 loginobj.setVisible(true);
                 
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                log_in loginobj = new log_in(DB_URL);
+                
+                setVisible(false); // Close the signup window
+                dispose();  // Release system resources
+
+                // Open the login window
+                loginobj.setVisible(true);  
             }
         });
     }
