@@ -39,7 +39,6 @@ public class homepage extends JFrame {
 
         // Set preferred size for the buttons to make them smaller and pink background
         Dimension buttonSize = new Dimension(100, 30);
-        buttonSize.colors.pink;
         homeStartButton.setPreferredSize(buttonSize);
         updateButton.setPreferredSize(buttonSize);
         deleteButton.setPreferredSize(buttonSize);
