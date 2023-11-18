@@ -3,12 +3,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 public class homepage extends JFrame {
 
@@ -20,29 +18,25 @@ public class homepage extends JFrame {
         setTitle("Home Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(350, 450);
-        setLayout(new GridBagLayout()); // Use GridBagLayout
+        setLayout(new GridBagLayout());
         setLocationRelativeTo(null);
 
-        // Add a JLabel for the image
         ImageIcon icon = new ImageIcon("D:\\Documents\\2023\\pf_final_project\\main\\images\\Zach.jpg");
         Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         icon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(icon);
 
-        // GridBagConstraints for image label
         GridBagConstraints gbcImage = new GridBagConstraints();
         gbcImage.gridx = 0;
         gbcImage.gridy = 0;
         add(imageLabel, gbcImage);
 
-        // Add your components or content here if needed
         JLabel label = new JLabel("Dmid is a dating application for people who are desperate");
 
-        // GridBagConstraints for label
         GridBagConstraints gbcLabel = new GridBagConstraints();
         gbcLabel.gridx = 0;
         gbcLabel.gridy = 1;
-        gbcLabel.insets = new Insets(10, 0, 10, 0); // Add some space above and below the label
+        gbcLabel.insets = new Insets(10, 0, 10, 0);
         add(label, gbcLabel);
 
         JButton homeStartButton = new JButton("Start");
@@ -50,14 +44,12 @@ public class homepage extends JFrame {
         JButton deleteButton = new JButton("Delete");
         JButton logoutButton = new JButton("Log out");
 
-        // Set preferred size for the buttons to make them smaller and pink background
         Dimension buttonSize = new Dimension(100, 30);
         homeStartButton.setPreferredSize(buttonSize);
         updateButton.setPreferredSize(buttonSize);
         deleteButton.setPreferredSize(buttonSize);
         logoutButton.setPreferredSize(buttonSize);
 
-        // Add spaces between buttons
         int space = 10;
         Insets buttonInsets = new Insets(0, space, 0, space);
         homeStartButton.setMargin(buttonInsets);
@@ -65,7 +57,6 @@ public class homepage extends JFrame {
         deleteButton.setMargin(buttonInsets);
         logoutButton.setMargin(buttonInsets);
 
-        // Use BoxLayout for button panel
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.add(homeStartButton);
@@ -73,59 +64,73 @@ public class homepage extends JFrame {
         buttonPanel.add(deleteButton);
         buttonPanel.add(logoutButton);
 
-        // GridBagConstraints for button panel
         GridBagConstraints gbcButtonPanel = new GridBagConstraints();
         gbcButtonPanel.gridx = 0;
         gbcButtonPanel.gridy = 2;
-        gbcButtonPanel.anchor = GridBagConstraints.EAST; // Align to the right
-        add(buttonPanel, gbcButtonPanel); // Add the button panel instead of individual buttons
+        gbcButtonPanel.anchor = GridBagConstraints.EAST;
+        add(buttonPanel, gbcButtonPanel);
 
         getContentPane().setBackground(Color.PINK);
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Assuming you have a method to get the user's email in your DatingProfile class
-                String userEmail = getUserEmail(); // Implement this method to get the email
+                String userEmail = getUserEmail("user@example.com"); // Replace with actual logic
                 System.out.print(userEmail);
                 delete del_user = new delete();
-    
+
                 JFrame delframe = new JFrame();
                 delframe.setTitle("Deleting User");
                 delframe.setSize(300, 300);
                 delframe.setLocation(400, 400);
-    
+
                 JLabel delLabel = new JLabel("Are you sure you want to delete this account?");
                 JButton delButton = new JButton("Delete");
-    
+
                 delframe.setLayout(new FlowLayout());
                 delframe.add(delLabel);
                 delframe.add(delButton);
-    
+
                 delframe.setVisible(true);
-    
+
                 delButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         JOptionPane.showMessageDialog(delframe, "Account Deleted");
                         del_user.deleteUser(userEmail);
-                        delframe.dispose(); // Close the confirmation frame
-    
+                        delframe.dispose();
+
                         // Use the email to create the DatingProfile instance
                         DatingProfile datingProfile = new DatingProfile(userEmail);
-                        //datingProfile.setVisible(true);
-                        // You may also close or hide the homepage frame if needed
                     }
                 });
             }
         });
-    
-        // Implement this method to get the user's email from your DatingProfile class
+
+        homeStartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement actions for the "Start" button, if needed
+            }
+        });
+
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement actions for the "Update" button, if needed
+            }
+        });
+
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement actions for the "Log out" button, if needed
+            }
+        });
     }
-    
-    private String getUserEmail() {
-        // Return the user's email; replace this with your actual implementation
-        String retrieveUserSQL = "SELECT name, age, location FROM sign_up WHERE email = ?";
+
+    private String getUserEmail(String email) {
+        String retrieveUserSQL = "SELECT email FROM sign_up WHERE email = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement preparedStatement = conn.prepareStatement(retrieveUserSQL)) {
 
@@ -133,12 +138,17 @@ public class homepage extends JFrame {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-        return "user@example.com";
+                if (resultSet.next()) {
+                    return resultSet.getString("email");
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
-    public void show_h(){
+    public void show_h() {
         setVisible(true);
     }
-
-    
 }
