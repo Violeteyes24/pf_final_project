@@ -124,6 +124,14 @@ public class homepage extends JFrame {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                log_in test_gologin = new log_in("jdbc:mysql://localhost:3306/dmid");
+
+                setVisible(false); // Close the signup window
+                dispose();  // Release system resources
+
+                // Open the login window
+                System.out.println("I am on log in");
+                test_gologin.setVisible(true);
                 // Implement actions for the "Log out" button, if needed
             }
         });
