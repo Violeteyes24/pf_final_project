@@ -60,6 +60,7 @@ public class Match extends JFrame {
     private JLabel interestsLabel;
     private JButton chatButton;
     private JButton skipButton;
+    private JButton homepage_button;
     
     private String currentMatchedUser;
     
@@ -68,8 +69,10 @@ public class Match extends JFrame {
         frame = new JFrame("Match Found!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 450);
+        frame.setLocation(400,400);
         frame.setLayout(new BorderLayout());
-        
+        frame.setBackground(Color.PINK);
+
         imageLabel = new JLabel();
         frame.add(imageLabel, BorderLayout.CENTER);
         
@@ -81,15 +84,32 @@ public class Match extends JFrame {
         interestsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         frame.add(interestsLabel, BorderLayout.SOUTH);
         
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         chatButton = new JButton("Chat with Them");
         chatButton.addActionListener(e -> startChat());
         skipButton = new JButton("Skip");
         skipButton.addActionListener(e -> displayRandomMatch());
+        homepage_button = new JButton("Home");
         
         buttonPanel.add(chatButton);
         buttonPanel.add(skipButton);
+        buttonPanel.add(homepage_button);
         frame.add(buttonPanel, BorderLayout.SOUTH);
+
+        homepage_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                homepage homepage_instance = new homepage();
+                
+                frame.setVisible(false); // Close the signup window
+                frame.dispose();  // Release system resources
+
+                // Open the login window
+                System.out.println("I am here on homepage, from match");
+                homepage_instance.show_h();
+                
+            }
+        });
     }
     
     private void displayRandomMatch() {

@@ -18,7 +18,7 @@ public class DatingProfile extends JFrame {
     public DatingProfile(String email) {
         setTitle("Dating Profile");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         // Retrieve user information from the database based on the email
         String retrieveUserSQL = "SELECT name, age, location FROM sign_up WHERE email = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -36,7 +36,7 @@ public class DatingProfile extends JFrame {
                     JPanel profilePanel = new JPanel();
                     profilePanel.setLayout(new BoxLayout(profilePanel, BoxLayout.Y_AXIS));
                     profilePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-                    getContentPane().setBackground(Color.PINK);
+                    
 
                     JLabel nameLabel = new JLabel("Name: " + name);
                     JLabel ageLabel = new JLabel("Age: " + age);
@@ -61,7 +61,9 @@ public class DatingProfile extends JFrame {
 
                     // Set layout for the frame
                     setLayout(new BorderLayout());
-
+                    getContentPane().setBackground(Color.PINK);
+                    profilePanel.setBackground(Color.PINK);
+                    
                     // Use GridBagLayout for centering the profilePanel
                     JPanel centerPanel = new JPanel(new GridBagLayout());
                     GridBagConstraints gbc = new GridBagConstraints();

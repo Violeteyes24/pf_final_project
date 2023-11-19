@@ -88,8 +88,14 @@ public class sign_in_form extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String emailText = email.getText();
+                String ageText = ageField.getText();
                 if (!EmailValidator.isValidEmail(emailText)) {
                     JOptionPane.showMessageDialog(sign_in_form.this, "Invalid email address!");
+                    return;
+                }
+
+                if (!AgeValidator.isValidAge(ageText)) {
+                    AgeValidator.showInvalidAgeMessage();
                     return;
                 }
                 log_in loginobj = new log_in(DB_URL);

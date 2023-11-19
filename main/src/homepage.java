@@ -100,7 +100,7 @@ public class homepage extends JFrame {
                         delframe.dispose();
 
                         // Use the email to create the DatingProfile instance
-                        DatingProfile datingProfile = new DatingProfile(userEmail);
+                        
                     }
                 });
             }
@@ -109,7 +109,15 @@ public class homepage extends JFrame {
         homeStartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implement actions for the "Start" button, if needed
+                String userEmail = getUserEmail(log_in.getLogged_in_email());
+                DatingProfile datingProfile = new DatingProfile(userEmail);
+                setVisible(false); // Close the signup window
+                dispose();  // Release system resources
+
+                // Open the login window
+                System.out.println("I am here on Dating Profile");
+                datingProfile.setVisible(true);
+                
             }
         });
 
