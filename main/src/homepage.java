@@ -63,6 +63,7 @@ public class homepage extends JFrame {
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(logoutButton);
+        buttonPanel.setBackground(Color.PINK);
 
         GridBagConstraints gbcButtonPanel = new GridBagConstraints();
         gbcButtonPanel.gridx = 0;

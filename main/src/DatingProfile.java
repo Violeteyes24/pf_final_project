@@ -58,6 +58,7 @@ public class DatingProfile extends JFrame {
                     JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
                     buttonPanel.add(startMatchingButton);
                     buttonPanel.add(homepageButton);
+                    buttonPanel.setBackground(Color.PINK);
 
                     // Set layout for the frame
                     setLayout(new BorderLayout());
@@ -70,6 +71,7 @@ public class DatingProfile extends JFrame {
                     gbc.gridx = 0;
                     gbc.gridy = 0;
                     centerPanel.add(profilePanel, gbc);
+                    centerPanel.setBackground(Color.PINK);
 
                     add(centerPanel, BorderLayout.CENTER);
                     add(buttonPanel, BorderLayout.SOUTH);
@@ -79,7 +81,7 @@ public class DatingProfile extends JFrame {
 
                     // Center the frame on the screen
                     setLocationRelativeTo(null);
-
+                    setBackground(Color.PINK);
                     // Make the frame visible
                     setVisible(true);
 

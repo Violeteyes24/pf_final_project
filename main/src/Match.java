@@ -71,7 +71,8 @@ public class Match extends JFrame {
         frame.setSize(400, 450);
         frame.setLocation(400,400);
         frame.setLayout(new BorderLayout());
-        frame.setBackground(Color.PINK);
+        // frame.setBackground(Color.PINK);
+        frame.getContentPane().setBackground(Color.PINK);
 
         imageLabel = new JLabel();
         frame.add(imageLabel, BorderLayout.CENTER);
@@ -94,6 +95,7 @@ public class Match extends JFrame {
         buttonPanel.add(chatButton);
         buttonPanel.add(skipButton);
         buttonPanel.add(homepage_button);
+        buttonPanel.setBackground(Color.PINK);
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
         homepage_button.addActionListener(new ActionListener() {
