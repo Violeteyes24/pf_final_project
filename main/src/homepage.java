@@ -116,7 +116,11 @@ public class homepage extends JFrame {
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String userEmail = getUserEmail(log_in.getLogged_in_email()); // Get logged-in email
+                System.out.println("homepage attempt to update: " + userEmail);
                 // Implement actions for the "Update" button, if needed
+                update_user_info updateForm = new update_user_info(userEmail);
+                updateForm.setVisible(true);
             }
         });
 
