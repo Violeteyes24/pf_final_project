@@ -33,6 +33,7 @@
 
         public static String getLogged_in_email(){
         return logged_in_email;
+        // important, might use again
     }
 
         public log_in(String DB_URL) {

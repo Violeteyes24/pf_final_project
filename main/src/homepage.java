@@ -75,8 +75,8 @@ public class homepage extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String userEmail = getUserEmail("user@example.com"); // Replace with actual logic
-                System.out.println("homepage attemp to get email" + userEmail);
+                String userEmail = getUserEmail(log_in.getLogged_in_email()); // Get logged-in email
+                System.out.println("homepage attempt to get email: " + userEmail);
                 delete del_user = new delete();
 
                 JFrame delframe = new JFrame();
@@ -96,10 +96,8 @@ public class homepage extends JFrame {
                 delButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
                         del_user.deleteUser(userEmail);
                         delframe.dispose();
-                        // JOptionPane.showMessageDialog(delframe, "Account Deleted");
 
                         // Use the email to create the DatingProfile instance
                         DatingProfile datingProfile = new DatingProfile(userEmail);
