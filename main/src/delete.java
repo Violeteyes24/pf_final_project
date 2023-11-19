@@ -27,7 +27,7 @@ public class delete {
                 try (PreparedStatement preparedStatement = conn.prepareStatement(deleteSQL)) {
                     // Set values for the prepared statement
                     preparedStatement.setString(1, userEmail);
-
+                    System.out.println("delete function attempt to get email " + userEmail);
                     // Execute the statement
                     int rowsAffected = preparedStatement.executeUpdate();
 
