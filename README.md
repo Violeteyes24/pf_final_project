@@ -66,7 +66,7 @@ The project consists of several Java classes, each serving a specific purpose:
 
 ## How to Run
 
-1. Compile the Java files using `javac`.
+1. Clone the repository, open main folder on any IDE and navigate to src folder where every class is there.
 2. Run the main class (`create_db`) to start the application.
 
 ## Assessment Criteria
