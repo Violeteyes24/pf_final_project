@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class Match extends JFrame {
 
@@ -73,7 +74,7 @@ public class Match extends JFrame {
         frame.setLayout(new BorderLayout());
         // frame.setBackground(Color.PINK);
         frame.getContentPane().setBackground(Color.PINK);
-
+        
         imageLabel = new JLabel();
         frame.add(imageLabel, BorderLayout.CENTER);
         
@@ -97,7 +98,7 @@ public class Match extends JFrame {
         buttonPanel.add(homepage_button);
         buttonPanel.setBackground(Color.PINK);
         frame.add(buttonPanel, BorderLayout.SOUTH);
-
+        
         homepage_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +106,7 @@ public class Match extends JFrame {
                 
                 frame.setVisible(false); // Close the signup window
                 frame.dispose();  // Release system resources
-
+                
                 // Open the login window
                 System.out.println("I am here on homepage, from match");
                 homepage_instance.show_h();
@@ -128,6 +129,7 @@ public class Match extends JFrame {
         imageLabel.setIcon(icon);
         nameLabel.setText("Matched with: " + name);
         
+        System.out.println("Image Path: " + new File(imagePath).getAbsolutePath());
         if (interests != null) {
             interestsLabel.setText("Interests: " + interests.toString());
         } else {
