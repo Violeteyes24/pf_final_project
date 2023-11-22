@@ -42,6 +42,9 @@ public class sign_in_form extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        JPanel mainPanel = new JPanel(new GridLayout(8, 2, 10, 1));
+        mainPanel.setBackground(Color.PINK);
+
         // Create components
         JLabel emailLabel = new JLabel("Email:");
         JLabel passwordLabel = new JLabel("Password:");
@@ -63,8 +66,8 @@ public class sign_in_form extends JFrame {
         loginButton.setLayout(new GridLayout(7,1));
 
         // Set up layout
-        setLayout(new GridLayout(8, 2, 10, 1));
-        getContentPane().setBackground(Color.PINK);
+        // setLayout(new GridLayout(8, 2, 10, 1));
+        // getContentPane().setBackground(Color.PINK);
         // setBackground(Color.pink);
         add(nameLabel);
         add(nameField);
@@ -81,6 +84,9 @@ public class sign_in_form extends JFrame {
         add(new JLabel()); // Placeholder
         add(signInButton);
         add(loginButton);
+
+        int padding = 10;
+        getContentPane().setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 
         
         // Add action listener to the sign-in button
