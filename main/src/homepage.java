@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class homepage extends JFrame {
 
@@ -21,10 +22,11 @@ public class homepage extends JFrame {
         setLayout(new GridBagLayout());
         setLocationRelativeTo(null);
 
-        ImageIcon icon = new ImageIcon("D:\\Documents\\2023\\pf_final_project\\main\\images\\Zach.jpg");
+        ImageIcon icon = new ImageIcon("images/Zach.jpg"); 
         Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         icon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(icon);
+        System.out.println("Image Path: " + new File("images/Zach.jpg").getAbsolutePath());
 
         GridBagConstraints gbcImage = new GridBagConstraints();
         gbcImage.gridx = 0;
