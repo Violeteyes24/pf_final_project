@@ -38,12 +38,13 @@ public class sign_in_form extends JFrame {
     public sign_in_form() {
         // Set up the frame
         setTitle("Sign In Form");
-        setSize(400, 300);
+        setSize(1000, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel(new GridLayout(8, 2, 10, 1));
         mainPanel.setBackground(Color.PINK);
+        
 
         // Create components
         JLabel emailLabel = new JLabel("Email:");
@@ -69,24 +70,28 @@ public class sign_in_form extends JFrame {
         // setLayout(new GridLayout(8, 2, 10, 1));
         // getContentPane().setBackground(Color.PINK);
         // setBackground(Color.pink);
-        add(nameLabel);
-        add(nameField);
-        add(ageLabel);
-        add(ageField);
-        add(sexLabel);
-        add(sex);
-        add(locationLabel);
-        add(locationField);
-        add(emailLabel);
-        add(email);
-        add(passwordLabel);
-        add(passwordField);
-        add(new JLabel()); // Placeholder
-        add(signInButton);
-        add(loginButton);
+        mainPanel.add(nameLabel);
+        mainPanel.add(nameField);
+        mainPanel.add(ageLabel);
+        mainPanel.add(ageField);
+        mainPanel.add(sexLabel);
+        mainPanel.add(sex);
+        mainPanel.add(locationLabel);
+        mainPanel.add(locationField);
+        mainPanel.add(emailLabel);
+        mainPanel.add(email);
+        mainPanel.add(passwordLabel);
+        mainPanel.add(passwordField);
+        mainPanel.add(new JLabel()); // Placeholder
+        mainPanel.add(signInButton);
+        mainPanel.add(loginButton);
 
-        int padding = 10;
-        getContentPane().setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
+        // Set up layout with the new content pane
+        setContentPane(mainPanel);
+
+        // Add padding around the entire layout
+        int padding = 40;
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 
         
         // Add action listener to the sign-in button
