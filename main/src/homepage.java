@@ -59,8 +59,7 @@ public class homepage extends JFrame {
         deleteButton.setMargin(buttonInsets);
         logoutButton.setMargin(buttonInsets);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         buttonPanel.add(homeStartButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
