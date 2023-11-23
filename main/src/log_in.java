@@ -17,6 +17,7 @@
 
         protected JTextField email;
         protected JPasswordField passwordField;
+        private JButton sign_in_button;
         
         protected static String logged_in_email;
         public static void setLogged_in_email(String email){
@@ -55,6 +56,7 @@
             passwordField = new JPasswordField(20);
 
             JButton loginButton = new JButton("Login");
+            JButton sign_in_button = new JButton("Create an account");
 
             // Set up layout
             setLayout(new GridLayout(3, 2));
@@ -65,6 +67,7 @@
             mainPanel.add(passwordField);
             mainPanel.add(new JLabel()); // Placeholder
             mainPanel.add(loginButton);
+            mainPanel.add(sign_in_button); 
 
             setContentPane(mainPanel);
 
@@ -129,5 +132,21 @@
                     }
                 }
             });
+
+            sign_in_button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    sign_in_form s = new sign_in_form();
+                    
+                    setVisible(false); // Close the signup window
+                    dispose();  // Release system resources
+                    
+                    // Open the login window
+                    System.out.println("I am here on sign in form");
+                    s.setVisible(true);
+                }
+            });
+
+
         }
     }

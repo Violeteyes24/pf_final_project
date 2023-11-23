@@ -18,6 +18,12 @@ public class DatingProfile extends JFrame {
     public DatingProfile(String email) {
         setTitle("Dating Profile");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        String imagePath = "images/datemeimdesparate.jpg";
+        ImageIcon icon = new ImageIcon(imagePath);
+        Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(icon);
         
         // Retrieve user information from the database based on the email
         String retrieveUserSQL = "SELECT name, age, location FROM sign_up WHERE email = ?";
@@ -70,6 +76,9 @@ public class DatingProfile extends JFrame {
                     GridBagConstraints gbc = new GridBagConstraints();
                     gbc.gridx = 0;
                     gbc.gridy = 0;
+                    centerPanel.add(imageLabel, gbc);
+                    gbc.gridx = 0;
+                    gbc.gridy = 1;
                     centerPanel.add(profilePanel, gbc);
                     centerPanel.setBackground(Color.PINK);
 

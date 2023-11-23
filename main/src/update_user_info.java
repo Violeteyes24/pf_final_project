@@ -7,7 +7,7 @@ public class update_user_info extends JFrame {
 
     private JTextField newNameField;
     private JTextField newAgeField;
-    private JTextField newSexField;
+    private JComboBox<String> newSexField;
     private JTextField newLocationField;
     private JPasswordField newPasswordField;
 
@@ -20,13 +20,14 @@ public class update_user_info extends JFrame {
         // Create components
         JLabel nameLabel = new JLabel("Enter new name:");
         JLabel ageLabel = new JLabel("Enter new age:");
-        JLabel sexLabel = new JLabel("Enter new sex:");
+        JLabel sexLabel = new JLabel("Select new sex:");
         JLabel locationLabel = new JLabel("Enter new location:");
         JLabel passwordLabel = new JLabel("Enter new password:");
 
         newNameField = new JTextField(20);
         newAgeField = new JTextField(20);
-        newSexField = new JTextField(20);
+        String[] sexOptions = {"male", "female", "others"};
+        newSexField = new JComboBox<>(sexOptions);
         newLocationField = new JTextField(20);
         newPasswordField = new JPasswordField(20);
 
@@ -54,7 +55,7 @@ public class update_user_info extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String newName = newNameField.getText();
                 int newAge = Integer.parseInt(newAgeField.getText());
-                String newSex = newSexField.getText();
+                String newSex = (String) newSexField.getSelectedItem();
                 String newLocation = newLocationField.getText();
                 String newPassword = new String(newPasswordField.getPassword());
 
