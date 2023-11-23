@@ -13,7 +13,7 @@ public class update_user_info extends JFrame {
 
     public update_user_info(String userEmail) {
         setTitle("Update User Information");
-        setSize(400, 300);
+        setSize(700, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 

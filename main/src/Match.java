@@ -69,8 +69,8 @@ public class Match extends JFrame {
         System.out.println("Im in Match page");
         frame = new JFrame("Match Found!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 450);
-        frame.setLocation(400,400);
+        frame.setSize(700, 400);
+        frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
         // frame.setBackground(Color.PINK);
         frame.getContentPane().setBackground(Color.PINK);

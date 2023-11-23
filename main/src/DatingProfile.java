@@ -77,7 +77,7 @@ public class DatingProfile extends JFrame {
                     add(buttonPanel, BorderLayout.SOUTH);
 
                     // Set the size of the frame
-                    setSize(400, 400);
+                    setSize(700, 400);
 
                     // Center the frame on the screen
                     setLocationRelativeTo(null);

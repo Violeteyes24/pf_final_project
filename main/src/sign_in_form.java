@@ -38,7 +38,7 @@ public class sign_in_form extends JFrame {
     public sign_in_form() {
         // Set up the frame
         setTitle("Sign In Form");
-        setSize(1000, 400);
+        setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

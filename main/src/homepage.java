@@ -18,7 +18,7 @@ public class homepage extends JFrame {
     public homepage() {
         setTitle("Home Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(350, 450);
+        setSize(700, 400);
         setLayout(new GridBagLayout());
         setLocationRelativeTo(null);
 

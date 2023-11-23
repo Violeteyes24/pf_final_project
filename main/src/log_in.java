@@ -40,9 +40,12 @@
 
             // Set up the frame
             setTitle("Login Form");
-            setSize(400, 150);
+            setSize(700, 400);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocationRelativeTo(null);
+
+            JPanel mainPanel = new JPanel(new GridLayout(8, 2, 10, 1));
+            mainPanel.setBackground(Color.PINK);
 
             // Create components
             JLabel emailLabel = new JLabel("Email:");
@@ -56,12 +59,17 @@
             // Set up layout
             setLayout(new GridLayout(3, 2));
             getContentPane().setBackground(Color.PINK);
-            add(emailLabel);
-            add(email);
-            add(passwordLabel);
-            add(passwordField);
-            add(new JLabel()); // Placeholder
-            add(loginButton);
+            mainPanel.add(emailLabel);
+            mainPanel.add(email);
+            mainPanel.add(passwordLabel);
+            mainPanel.add(passwordField);
+            mainPanel.add(new JLabel()); // Placeholder
+            mainPanel.add(loginButton);
+
+            setContentPane(mainPanel);
+
+            int padding = 40;
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 
             // Add action listener to the login button
             loginButton.addActionListener(new ActionListener() {
