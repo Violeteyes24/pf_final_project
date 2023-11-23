@@ -17,7 +17,7 @@
 
         protected JTextField email;
         protected JPasswordField passwordField;
-        private JButton sign_in_button;
+        private JButton sign_in_button; 
         
         protected static String logged_in_email;
         public static void setLogged_in_email(String email){
