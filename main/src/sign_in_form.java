@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +44,7 @@ public class sign_in_form extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel mainPanel = new JPanel(new GridLayout(8, 2, 10, 1));
+        JPanel mainPanel = new JPanel(new GridLayout(8, 2, 10, 2));
         mainPanel.setBackground(Color.PINK);
         
 
@@ -61,15 +63,21 @@ public class sign_in_form extends JFrame {
         nameField = new JTextField(20);
         ageField = new JTextField(20);
 
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
         JButton signInButton = new JButton("Sign In");
         JButton loginButton = new JButton("Login"); 
-
-        loginButton.setLayout(new GridLayout(7,1));
-
+        
+        
+        buttonPanel.setLayout(new GridLayout(1,2));
+        
         // Set up layout
         // setLayout(new GridLayout(8, 2, 10, 1));
         // getContentPane().setBackground(Color.PINK);
         // setBackground(Color.pink);
+        buttonPanel.add(signInButton);
+        buttonPanel.add(loginButton);
+        
         mainPanel.add(nameLabel);
         mainPanel.add(nameField);
         mainPanel.add(ageLabel);
@@ -83,12 +91,15 @@ public class sign_in_form extends JFrame {
         mainPanel.add(passwordLabel);
         mainPanel.add(passwordField);
         mainPanel.add(new JLabel()); // Placeholder
-        mainPanel.add(signInButton);
-        mainPanel.add(loginButton);
+        // buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        // EmptyBorder pinkEmptyBorder = new EmptyBorder(0, 0, 0, 0);
+        // buttonPanel.setBorder(BorderFactory.createCompoundBorder(buttonPanel.getBorder(), pinkEmptyBorder));
+        mainPanel.add(buttonPanel);
+        // mainPanel.add(signInButton);
+        // mainPanel.add(loginButton);
 
         // Set up layout with the new content pane
         setContentPane(mainPanel);
-
         // Add padding around the entire layout
         int padding = 40;
         mainPanel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
@@ -136,6 +147,7 @@ public class sign_in_form extends JFrame {
                 System.out.println("I am on log_in page");  
             }
         });
+        
 
     }
             private void displayUserInfo() {
