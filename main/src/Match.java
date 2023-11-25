@@ -21,7 +21,7 @@ public class Match extends JFrame {
             "images/Alice.jpg",
             "images/Diana.jpg",
             "images/Bea.jpg",
-            "images/Lize.jpg",
+            "images/ronie.jpg",
             "images/Nayah.jpg",
             "images/Luwan.jpg",
             "images/Zach.jpg",
@@ -32,8 +32,8 @@ public class Match extends JFrame {
 
     private static final String[] NAMES = {
             "Alice",
-            "Diana",
             "Lize",
+            "Ronie",
             "Nayah",
             "Bea",
             "Luwan",
