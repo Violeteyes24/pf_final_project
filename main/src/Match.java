@@ -84,6 +84,8 @@ public class Match extends JFrame {
         
         interestsLabel = new JLabel();
         interestsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        imageLabel.setVerticalAlignment(JLabel.CENTER);
         frame.add(interestsLabel, BorderLayout.SOUTH);
         
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
